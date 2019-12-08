@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  patient: MyString
+  doctor: MyString
+  date_procedure: 2019-12-02
+  sex: MyString
+  city: MyString
+  note: MyString
+  last_procedure: MyString
+  reason: MyString
+  motivation: MyString
+  drugs: MyString
+  contraceptive: MyString
+  anomaly: MyString
+  bone_development: MyString
+  physical_type: MyString
+  height: MyString
+  weight: MyString
+  last_surgery: MyString
+  cheers: MyString
+
+two:
+  patient: MyString
+  doctor: MyString
+  date_procedure: 2019-12-02
+  sex: MyString
+  city: MyString
+  note: MyString
+  last_procedure: MyString
+  reason: MyString
+  motivation: MyString
+  drugs: MyString
+  contraceptive: MyString
+  anomaly: MyString
+  bone_development: MyString
+  physical_type: MyString
+  height: MyString
+  weight: MyString
+  last_surgery: MyString
+  cheers: MyString

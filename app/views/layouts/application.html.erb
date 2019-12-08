@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NewSmile</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <div class="row top-bar">
+        <div class="col-lg-2 col-md-2 col-sm-2 logo">
+          <%= image_tag 'logo.jpg', :width=>'100px' %>
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 navbar">
+          
+        </div>
+      </div>
+    </header>
+    <div style="padding-top: 4em;">
+      <%= yield %>
+    </div>
+  </body>
+</html>

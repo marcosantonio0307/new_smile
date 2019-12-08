@@ -1,0 +1,106 @@
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12">
+		<div class="container">
+			<h2 align="center"><b>PROCESSO Nº <%= @procedure.id %></b></h2><br><br>
+			<div class="procedure-menu">
+				<span id="personalInformations" class="tabs" onclick="activeTab('personalInformations')" style="background: #F78181;">Dados Pessoais</span>
+				<span id="works" class="tabs" onclick="activeTab('works')" >Trabalhos Realizados</span>
+				<span id="photos" class="tabs" onclick="activeTab('photos')" >Fotografías</span>
+				<span id="rayx" class="tabs" onclick="activeTab('rayx')" >Raio-X Panorâmico</span>
+				<span id="telerayx" class="tabs" onclick="activeTab('telerayx')" >Teleradiografía</span>
+				<span id="traced" class="tabs" onclick="activeTab('traced')" >Traçado Cefalometrico</span>
+				<span id="usp" class="tabs" onclick="activeTab('usp')" >Fator USP</span>
+				<span id="report" class="tabs" onclick="activeTab('report')" >Laudo Radiográfico</span>
+			</div>
+			<div class="procedure-box">
+				<div id="personalInformations-box" class="container-procedure">
+					<h4 align="center"><b>INFORMAÇOES DO PACIENTE</b></h4><br>
+					<h3><b><%= @procedure.patient %></b></h3>
+					<h3><b>DR. <%= @procedure.doctor %></b></h3>
+					<h4><b>DATA: </b><%= datebr(@procedure.date_procedure) %>
+					<span style="margin-left: 3em;"><b>SEXO: </b><%= @procedure.sex %></span>
+					<span style="margin-left: 3em;"><b>CIDADE: </b><%= @procedure.city %></span> 
+					</h4>
+					<h4><b>OBS: </b><%= @procedure.note %></h4>
+					<hr>
+
+					<h4 align="center"><b>INFORMAÇOES ORTODONTICAS</b></h4><br>
+					<h4><b>TRATAMENTO ORTODONTICO ANTERIOR: </b><%= @procedure.last_procedure %></h4>
+					<h4><b>RAZOES PARA O TRATAMENTO ORTODONTICO: </b><%= @procedure.reason %></h4>
+					<h4><b>GRAU DE MOTIVAÇAO: </b><%= @procedure.motivation %></h4><br>
+					
+					<h4 align="center"><b>HISTORICO MEDICO</b></h4><br>
+					<h4><b>O PACIENTE JA APRESENTOU</b></h4>
+					<hr>
+					<div class="form-group col-lg-4 col-md-4">
+						<h4><b>Asma: </b><%= @items[0] %></h4>
+						<h4><b>Anemia: </b><%= @items[1] %></h4>
+						<h4><b>Alergia: </b><%= @items[2] %></h4>
+						<h4><b>Doença Sanguinea: </b><%= @items[3] %></h4>
+						<h4><b>Doença Óssea: </b><%= @items[4] %></h4>
+						<h4><b>Diabetes: </b><%= @items[5] %></h4>
+					</div>
+					<div class="form-group col-lg-4 col-md-4">
+						<h4><b>Eplepsia: </b><%= @items[6] %></h4>
+						<h4><b>Problemas Emocionais: </b><%= @items[7] %></h4>
+						<h4><b>Problemas Endócrinos: </b><%= @items[8] %></h4>
+						<h4><b>Doenças Cardíacas: </b><%= @items[9] %></h4>
+						<h4><b>Disturbios Auditivos: </b><%= @items[10] %></h4>
+						<h4><b>Disturbios Respiratórios: </b><%= @items[11] %></h4>
+					</div>
+					<div class="form-group col-lg-4 col-md-4" style="margin-bottom: 3em;">
+						<h4><b>Traumatísmo de Face/Cabeça: </b><%= @items[12] %></h4>
+						<h4><b>Herpes: </b><%= @items[13] %></h4>
+						<h4><b>Hepatite: </b><%= @items[14] %></h4>
+						<h4><b>Febre Reumática: </b><%= @items[15] %></h4>
+						<h4><b>Fraturas Ósseas: </b><%= @items[16] %></h4>
+						<h4><b>Outros: </b><%= @items[16] %></h4>
+					</div>
+					<h4><b>INGERE DROGAS OU MEDICAMENTOS: </b><%= @procedure.drugs %>
+					<span style="margin-left: 6em;"><b>ANTICONCEPCIONAL: </b><%= @procedure.contraceptive %></span></h4>
+					<h4><b>ANOMALIASCONGENITAS: </b><%= @procedure.anomaly %></h4>
+					<h4><b>ESTAGIO DE DESENVOLVIMENTO OSSEO: </b><%= @procedure.bone_development %>
+					<span style="margin-left: 6em"><b>TIPO FISICO: </b><%= @procedure.physical_type %></span>
+					<span style="margin-left: 3em;"><b>ALTURA: </b><%= @procedure.height %></span>
+					<span style="margin-left: 3em;"><b>PESO: </b></span></h4>
+					<h4><b>CIRURGIA ANTERIOR: </b><%= @procedure.last_surgery %>
+					<span style="margin-left: 6em;"><b>SAUDE ATUAL: </b><%= @cheers %></span>
+					</h4>
+				</div>
+				<div id="works-box" class="container-procedure">
+					<h4 align="center"><b>PROCEDIMENTOS REALIZADOS</b></h4><br>
+					<table class="table table-bordered">
+						<thead>
+							<th>Data</th>
+							<th>Procedimento Realizado no Paciente</th>
+							<th>Procedimento Futuro</th>
+						</thead>
+						<tbody>
+							<tr>
+								
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="container-procedure">
+					
+				</div>
+				<div class="container-procedure">
+					
+				</div>
+				<div class="container-procedure">
+					
+				</div>
+				<div class="container-procedure">
+					
+				</div>
+				<div class="container-procedure">
+					
+				</div>
+				<div class="container-procedure">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

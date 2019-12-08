@@ -1,0 +1,84 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+
+}
+
+body, input, button {
+	font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.top-bar {
+	width: 110%;
+	position: fixed;
+	z-index: 1;
+}
+
+.navbar {
+	height: 50px;
+	background: red;
+}
+
+.logo {
+	height: 50px;
+	background-color: #fff;
+}
+
+.logo img {
+	margin-left: 1.5em;
+	margin-top: 5px;
+}
+
+.container-medium {
+	width: 70%;
+	margin: 1em auto;
+}
+
+.check-box {
+	margin-bottom: 2em;
+}
+
+.procedure-menu span {
+	border: solid 1px #e6e6e6;
+	padding: 5px 10px;
+	font-weight: bold;
+}
+
+.tabs {
+	cursor: default;
+}
+
+.procedure-box {
+	border: solid 1px #e6e6e6;
+	margin-top: 10px;
+	min-height: 100px;
+	padding-left: 2em;
+	padding-top: 1em;
+	background: #e6e6e6;
+}
+
+.procedure-box h4 {
+	margin-top: 1em;
+}

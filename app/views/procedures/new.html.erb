@@ -1,0 +1,134 @@
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12">
+		<div class="container-medium">
+			<h2 align="center"><b>NOVO PROCESSO</b></h2><br><br>
+
+			<%= form_for @procedure do |f| %>
+				<div class="form-group">
+					<%= f.label :Paciente %>
+					<%= f.text_field :patient, class: 'form-control' %>
+				</div>
+				<div class="form-group">
+					<%= f.label :Doutor %>
+					<%= f.text_field :doctor, class: 'form-control' %>
+				</div>
+				<div class="form-group">
+					<%= f.label :Data %>
+					<%= f.date_field :date_procedure, class: 'form-control' %>
+				</div>
+				<div class="form-group">
+					<%= f.label :Sexo %> <br>
+					<%= f.select :sex, ['Masculino', 'Feminino'], class: 'form-control' %>
+				</div>
+				<div class="form-group">
+					<%= f.label :Cidade %>
+					<%= f.text_field :city, class: 'form-control' %>
+				</div>
+				<div class="form-group">
+					<%= f.label :Observações %>
+					<%= f.text_area :note, class: 'form-control' %>
+				</div>
+				<div class="form-group">
+					<%= f.label 'Tratamento Ortodôntico Anterior' %>
+					<%= f.text_field :last_procedure, class: 'form-control' %>
+				</div>
+				<div class="form-group">
+					<%= f.label 'Razões Para o Tratamento Ortodôntico' %>
+					<%= f.text_field :reason, class: 'form-control' %>
+				</div>
+				<div class="form-group">
+					<%= f.label 'Grau de Motivação' %>
+					<%= f.text_field :motivation, class: 'form-control' %>
+				</div>
+				<div>
+					<hr><br>	
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 check-box">
+					<h3 align="center"><b>Histórico Médico</b></h3>
+					<div class="form-group col-lg-4 col-md-4">
+						<%= f.check_box :item_1 %>
+						<%= f.label 'Asma' %><br>
+						<%= f.check_box :item_2 %>
+						<%= f.label 'Anemia' %><br>
+						<%= f.check_box :item_3 %>
+						<%= f.label 'Alergia' %><br>
+						<%= f.check_box :item_4 %>
+						<%= f.label 'Doença Sanguínea' %><br>
+						<%= f.check_box :item_5 %>
+						<%= f.label 'Doença Óssea' %><br>
+						<%= f.check_box :item_6 %>
+						<%= f.label 'Diabetes' %><br>
+					</div>
+					<div class="form-group col-lg-4 col-md-4">
+						<%= f.check_box :item_7 %>
+						<%= f.label 'Eplepsia' %><br>
+						<%= f.check_box :item_8 %>
+						<%= f.label 'Problemas Emocionais' %><br>
+						<%= f.check_box :item_9 %>
+						<%= f.label 'Problemas Endócrinos' %><br>
+						<%= f.check_box :item_10 %>
+						<%= f.label 'Doenças Cardíacas' %><br>
+						<%= f.check_box :item_11 %>
+						<%= f.label 'Disturbios Auditivos' %><br>
+						<%= f.check_box :item_12 %>
+						<%= f.label 'Disturbios Respiratórios' %><br>
+					</div>
+					<div class="form-group col-lg-4 col-md-4">
+						<%= f.check_box :item_13 %>
+						<%= f.label 'Traumatísmo de Face/Cabeça' %><br>
+						<%= f.check_box :item_14 %>
+						<%= f.label 'Herpes' %><br>
+						<%= f.check_box :item_15 %>
+						<%= f.label 'Hepatite' %><br>
+						<%= f.check_box :item_16 %>
+						<%= f.label 'Febre Reumática' %><br>
+						<%= f.check_box :item_17 %>
+						<%= f.label 'Fraturas Ósseas' %><br>
+						<%= f.check_box :item_18 %>
+						<%= f.label 'Outros' %><br>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<%= f.label 'Ingere Drogas ou Medicamentos' %>
+					<%= f.text_field :drugs, class: 'form-control' %>
+				</div>
+				<div class="form-group">
+					<%= f.label 'Anticoncepcional?' %>
+					<%= f.text_field :contraceptive, class: 'form-control' %>
+				</div>
+				<div class="form-group">
+					<%= f.label 'Anomalias Congênitas?' %>
+					<%= f.text_field :anomaly, class: 'form-control' %>
+				</div>
+				<div class="form-group">
+					<%= f.label 'Estágio de  Desenvolvimento Ósseo' %>
+					<%= f.text_field :bone_development, class: 'form-control' %>
+				</div>
+				<div class="form-group">
+					<%= f.label 'Tipo Físico' %>
+					<%= f.text_field :physical_type, class: 'form-control' %>
+				</div>
+				<div class="form-group">
+					<%= f.label 'Altura' %>
+					<%= f.text_field :height, class: 'form-control' %>
+				</div>
+				<div class="form-group">
+					<%= f.label 'Peso' %>
+					<%= f.text_field :weight, class: 'form-control' %>
+				</div>
+				<div class="form-group">
+					<%= f.label 'Cirurgia Anterior' %>
+					<%= f.text_field :last_surgery, class: 'form-control' %>
+				</div>
+				<div class="form-group">
+					<%= f.label 'Saúde' %>
+					<%= f.text_field :cheers, class: 'form-control' %>
+				</div>
+				<div class="form-group">
+					<%= f.submit :Salvar, class: 'btn btn-success' %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
