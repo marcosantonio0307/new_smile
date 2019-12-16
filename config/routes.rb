@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root 'procedures#index'
 
+  get 'users/sign_up' => 'procedures#notfound'
+  devise_for :users
+
   get 'procedures/:id/reports' => 'procedures#reports', as: :procedure_reports
   put 'procedures/:id/avatar' => 'procedures#avatar', as: :procedure_avatar
   put 'procedures/:id/photos' => 'procedures#photos', as: :procedure_photos

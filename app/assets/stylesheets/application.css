@@ -51,6 +51,11 @@ body, input, button {
 	margin-top: 5px;
 }
 
+.login-area {
+	margin: 5em auto;
+	padding-left: 70%;
+}
+
 .container-medium {
 	width: 70%;
 	margin: 1em auto;

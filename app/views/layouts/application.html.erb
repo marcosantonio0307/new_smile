@@ -16,7 +16,9 @@
           <%= link_to (image_tag 'logo.jpg', :width=>'100px'), root_path %>
         </div>
         <div class="col-lg-10 col-md-10 col-sm-10 navbar">
-          
+          <% if signed_in? %>
+          <p style="margin-top: 5px; margin-left: 85%;"><%= link_to :Sair, destroy_user_session_path, method: :delete, class: 'btn btn-default' %></p>
+          <% end %>
         </div>
       </div>
     </header>
