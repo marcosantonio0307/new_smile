@@ -17,6 +17,12 @@ class ProceduresController < ApplicationController
 		end
 	end
 
+	def reports
+		@procedure = Procedure.find(params[:id])
+		@procedure.update(tooth: params[:tooth], report: params[:report])
+		redirect_to procedure_path(@procedure), notice: 'Atualizado!'
+	end
+
 	def show
 		@procedure = Procedure.find(params[:id])
 
@@ -34,5 +40,71 @@ class ProceduresController < ApplicationController
 				@items << 'SIM'
 			end
 		end
+	end
+
+	def avatar
+		@procedure = Procedure.find(params[:id])
+		@procedure.avatar.attach(params[:avatar])
+		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
+	end
+
+	def photos
+		@procedure = Procedure.find(params[:id])
+		@procedure.photos.attach(params[:photos])
+		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
+	end
+
+	def raysx
+		@procedure = Procedure.find(params[:id])
+		@procedure.raysx.attach(params[:raysx])
+		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
+	end
+
+	def teleraysx
+		@procedure = Procedure.find(params[:id])
+		@procedure.teleraysx.attach(params[:teleraysx])
+		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
+	end
+
+	def traceds
+		@procedure = Procedure.find(params[:id])
+		@procedure.traceds.attach(params[:traceds])
+		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
+	end
+
+	def usps
+		@procedure = Procedure.find(params[:id])
+		@procedure.usps.attach(params[:usps])
+		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
+	end
+
+	def purge_photos
+		@procedure = Procedure.find(params[:id])
+		@procedure.photos.destroy params[:photos_id]
+		redirect_to procedure_path(@procedure), notice: 'Imagem Removida!'
+	end
+
+	def purge_raysx
+		@procedure = Procedure.find(params[:id])
+		@procedure.raysx.destroy params[:raysx_id]
+		redirect_to procedure_path(@procedure), notice: 'Imagem Removida!'
+	end
+
+	def purge_teleraysx
+		@procedure = Procedure.find(params[:id])
+		@procedure.teleraysx.destroy params[:teleraysx_id]
+		redirect_to procedure_path(@procedure), notice: 'Imagem Removida!'
+	end
+
+	def purge_traceds
+		@procedure = Procedure.find(params[:id])
+		@procedure.traceds.destroy params[:traceds_id]
+		redirect_to procedure_path(@procedure), notice: 'Imagem Removida!'
+	end
+
+	def purge_usps
+		@procedure = Procedure.find(params[:id])
+		@procedure.usps.destroy params[:usps_id]
+		redirect_to procedure_path(@procedure), notice: 'Imagem Removida!'
 	end
 end

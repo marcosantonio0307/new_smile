@@ -3,7 +3,7 @@
 		<div class="container">
 			<h2 align="center"><b>PROCESSO Nº <%= @procedure.id %></b></h2><br><br>
 			<div class="procedure-menu">
-				<span id="personalInformations" class="tabs" onclick="activeTab('personalInformations')" style="background: #F78181;">Dados Pessoais</span>
+				<span id="personalInformations" class="tabs" onclick="activeTab('personalInformations')" >Dados Pessoais</span>
 				<span id="works" class="tabs" onclick="activeTab('works')" >Trabalhos Realizados</span>
 				<span id="photos" class="tabs" onclick="activeTab('photos')" >Fotografías</span>
 				<span id="rayx" class="tabs" onclick="activeTab('rayx')" >Raio-X Panorâmico</span>
@@ -13,8 +13,23 @@
 				<span id="report" class="tabs" onclick="activeTab('report')" >Laudo Radiográfico</span>
 			</div>
 			<div class="procedure-box">
-				<div id="personalInformations-box" class="container-procedure">
-					<h4 align="center"><b>INFORMAÇOES DO PACIENTE</b></h4><br>
+				<div id="personalInformations-box" class="container-procedure no-active">
+					<div class="avatar">
+						<% if @procedure.avatar.attached? %>
+							<%= image_tag @procedure.avatar %>
+							<%= form_tag procedure_avatar_path(@procedure), method: :put, multipart: true do %>
+								<p align="right"><%= file_field_tag :avatar %></p>
+								<p><%= button_to :Enviar, procedure_avatar_path(@procedure) ,class: 'btn btn-success' %></p>
+							<% end %>
+						<% else %>
+							<h3>Não há imagem</h3>
+							<%= form_tag procedure_avatar_path(@procedure), method: :put, multipart: true do %>
+								<p align="right"><%= file_field_tag :avatar %></p>
+								<p><%= button_to :Enviar, procedure_avatar_path(@procedure) ,class: 'btn btn-success' %></p>
+							<% end %>
+						<% end %>
+					</div>
+					<h4><b>* INFORMAÇOES DO PACIENTE</b></h4><br>
 					<h3><b><%= @procedure.patient %></b></h3>
 					<h3><b>DR. <%= @procedure.doctor %></b></h3>
 					<h4><b>DATA: </b><%= datebr(@procedure.date_procedure) %>
@@ -24,7 +39,7 @@
 					<h4><b>OBS: </b><%= @procedure.note %></h4>
 					<hr>
 
-					<h4 align="center"><b>INFORMAÇOES ORTODONTICAS</b></h4><br>
+					<h4><b>* INFORMAÇOES ORTODONTICAS</b></h4><br>
 					<h4><b>TRATAMENTO ORTODONTICO ANTERIOR: </b><%= @procedure.last_procedure %></h4>
 					<h4><b>RAZOES PARA O TRATAMENTO ORTODONTICO: </b><%= @procedure.reason %></h4>
 					<h4><b>GRAU DE MOTIVAÇAO: </b><%= @procedure.motivation %></h4><br>
@@ -67,8 +82,9 @@
 					<span style="margin-left: 6em;"><b>SAUDE ATUAL: </b><%= @cheers %></span>
 					</h4>
 				</div>
-				<div id="works-box" class="container-procedure">
+				<div id="works-box" class="container-procedure no-active">
 					<h4 align="center"><b>PROCEDIMENTOS REALIZADOS</b></h4><br>
+					<p><%= link_to 'Registrar Novo Procedimento', new_procedure_work_path(@procedure), class: 'btn btn-success' %></p>
 					<table class="table table-bordered">
 						<thead>
 							<th>Data</th>
@@ -76,31 +92,125 @@
 							<th>Procedimento Futuro</th>
 						</thead>
 						<tbody>
+							<% @procedure.works.each do |work| %>
 							<tr>
-								
+								<td><%= datebr(work.date_work) %></td>
+								<td><%= work.description %></td>
+								<td><%= work.next_work %></td>
+								<td><%= link_to :Editar, edit_procedure_work_path(@procedure, work), class: 'btn btn-warning' %></td>
+								<td><%= link_to :Excluir, procedure_work_path(@procedure, work), method: :delete, class: 'btn btn-danger' %></td>
 							</tr>
+							<% end %>
 						</tbody>
 					</table>
 				</div>
-				<div class="container-procedure">
-					
+				<div id="photos-box" class="container-procedure no-active">
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<%= form_tag procedure_photos_path(@procedure), method: :put, multipart: true do %>
+							<div class="add-photos">
+								<p><b>Adicionar Nova Imagem</b></p>
+								<span><%= file_field_tag :photos %></span> 
+								<span style="margin-left: -3em"><%= button_to :Salvar, procedure_photos_path(@procedure) ,class: 'btn btn-success' %></span>
+							</div>
+						<% end %>
+					</div>
+					<% @procedure.photos.each do |photo| %>
+					<div class="col-lg-3 col-md-3 col-sm-12 photo">
+						<%= link_to (image_tag photo), url_for(photo) %>
+						<%= link_to :Remover, purge_photos_path(@procedure, photo), method: :delete, class: 'btn btn-danger', data:{confirm: 'Remover esta imagem?'} %>
+					</div>
+					<% end %>
 				</div>
-				<div class="container-procedure">
-					
+				<div id="rayx-box" class="container-procedure no-active">
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<%= form_tag procedure_raysx_path(@procedure), method: :put, multipart: true do %>
+							<div class="add-photos">
+								<p><b>Adicionar Nova Imagem</b></p>
+								<span><%= file_field_tag :raysx %></span> 
+								<span style="margin-left: -3em"><%= button_to :Salvar, procedure_raysx_path(@procedure) ,class: 'btn btn-success' %></span>
+							</div>
+						<% end %>
+					</div>
+					<% @procedure.raysx.each do |photo| %>
+					<div class="col-lg-3 col-md-3 col-sm-12 photo">
+						<%= link_to (image_tag photo), url_for(photo) %>
+						<%= link_to :Remover, purge_raysx_path(@procedure, photo), method: :delete, class: 'btn btn-danger', data:{confirm: 'Remover esta imagem?'} %>
+					</div>
+					<% end %>
 				</div>
-				<div class="container-procedure">
-					
+				<div id="telerayx-box" class="container-procedure no-active">
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<%= form_tag procedure_teleraysx_path(@procedure), method: :put, multipart: true do %>
+							<div class="add-photos">
+								<p><b>Adicionar Nova Imagem</b></p>
+								<span><%= file_field_tag :teleraysx %></span> 
+								<span style="margin-left: -3em"><%= button_to :Salvar, procedure_teleraysx_path(@procedure) ,class: 'btn btn-success' %></span>
+							</div>
+						<% end %>
+					</div>
+					<% @procedure.teleraysx.each do |photo| %>
+					<div class="col-lg-3 col-md-3 col-sm-12 photo">
+						<%= link_to (image_tag photo), url_for(photo) %>
+						<%= link_to :Remover, purge_teleraysx_path(@procedure, photo), method: :delete, class: 'btn btn-danger', data:{confirm: 'Remover esta imagem?'} %>
+					</div>
+					<% end %>
 				</div>
-				<div class="container-procedure">
-					
+				<div id="traced-box" class="container-procedure no-active">
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<%= form_tag procedure_traceds_path(@procedure), method: :put, multipart: true do %>
+							<div class="add-photos">
+								<p><b>Adicionar Nova Imagem</b></p>
+								<span><%= file_field_tag :traceds %></span> 
+								<span style="margin-left: -3em"><%= button_to :Salvar, procedure_traceds_path(@procedure) ,class: 'btn btn-success' %></span>
+							</div>
+						<% end %>
+					</div>
+					<% @procedure.traceds.each do |photo| %>
+					<div class="col-lg-3 col-md-3 col-sm-12 photo">
+						<%= link_to (image_tag photo), url_for(photo) %>
+						<%= link_to :Remover, purge_traceds_path(@procedure, photo), method: :delete, class: 'btn btn-danger', data:{confirm: 'Remover esta imagem?'} %>
+					</div>
+					<% end %>
 				</div>
-				<div class="container-procedure">
-					
+				<div id="usp-box" class="container-procedure no-active">
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<%= form_tag procedure_usps_path(@procedure), method: :put, multipart: true do %>
+							<div class="add-photos">
+								<p><b>Adicionar Nova Imagem</b></p>
+								<span><%= file_field_tag :usps %></span> 
+								<span style="margin-left: -3em"><%= button_to :Salvar, procedure_usps_path(@procedure) ,class: 'btn btn-success' %></span>
+							</div>
+						<% end %>
+					</div>
+					<% @procedure.usps.each do |photo| %>
+					<div class="col-lg-3 col-md-3 col-sm-12 photo">
+						<%= link_to (image_tag photo), url_for(photo) %>
+						<%= link_to :Remover, purge_usps_path(@procedure, photo), method: :delete, class: 'btn btn-danger', data:{confirm: 'Remover esta imagem?'} %>
+					</div>
+					<% end %>
 				</div>
-				<div class="container-procedure">
-					
+				<div id="report-box" class="container-procedure no-active">
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<%= form_tag procedure_reports_path(@procedure), method: :get do %>
+						<h3 align="center"><b>TIPO DE DENTIÇÃO</b></h3>
+						<div class="form-group box1" >
+							<%= text_area_tag :tooth, @procedure.tooth , class: 'form-control' %>	
+						</div><br>
+						<h3 align="center"><b>ACHADOS RADIOGRAFICOS</b></h3>
+						<div class="form-group box2">
+							<%= text_area_tag :report, @procedure.report, class: 'form-control' %>
+						</div>
+						<div>
+							<%= button_to :Salvar, procedure_reports_path(@procedure), class: 'btn btn-success' %>
+						</div>
+						<% end %>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<script>
+	window.onload = initial;
+</script>
