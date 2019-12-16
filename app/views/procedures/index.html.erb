@@ -14,8 +14,8 @@
 					<tr>
 						<td><%= procedure.patient %></td>
 						<td><%= procedure.doctor %></td>
-						<td><%= procedure.date_procedure %></td>
-						<td><%= link_to :Exibir, procedure_path(procedure) %></td>
+						<td><%= datebr(procedure.date_procedure) %></td>
+						<td><%= link_to :Exibir, procedure_path(procedure), class: 'btn btn-primary' %></td>
 					</tr>
 					<% end %>
 				</tbody>

@@ -73,7 +73,7 @@ body, input, button {
 .procedure-box {
 	border: solid 1px #e6e6e6;
 	margin-top: 10px;
-	min-height: 100px;
+	min-height: 1600px;
 	padding-left: 2em;
 	padding-top: 1em;
 	background: #e6e6e6;
@@ -81,4 +81,49 @@ body, input, button {
 
 .procedure-box h4 {
 	margin-top: 1em;
+}
+
+.avatar {
+	float: right;
+	width: 250px;
+	height: 300px;
+	margin-right: 1em;
+}
+
+.avatar img {
+	height: 300px;
+	width: 250px;
+}
+
+.photo {
+	height: 320px;
+	text-align: center;
+}
+
+.photo img {
+	height: 90%;
+	max-width: 100%;
+}
+
+.add-photos span {
+	float: left;
+	margin-bottom: 3em;
+}
+
+.no-active {
+	display: none;
+}
+
+.active {
+	display: block;
+}
+
+.box1 textarea {
+	font-size: 1.3em;
+	height: 200px;
+}
+
+.box2 textarea {
+	font-size: 1.3em;
+	height: 300px;
 }

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  procedure: one
+  date_work: 2019-12-14
+  description: MyString
+  next_work: MyString
+
+two:
+  procedure: two
+  date_work: 2019-12-14
+  description: MyString
+  next_work: MyString
