@@ -1,5 +1,6 @@
 class ProceduresController < ApplicationController
 	before_action :authenticate_user!, only:[:index, :create, :update, :reports, :avatar, :photos, :raysx, :teleraysx, :traceds, :usps, :purge_photos, :purge_raysx, :purge_teleraysx, :purge_traceds, :purge_usps]
+	skip_before_action :verify_authenticity_token, only:[:avatar, :photos, :raysx, :teleraysx, :traceds, :usps, :purge_photos, :purge_raysx, :purge_teleraysx, :purge_traceds, :purge_usps]
 
 	def index
 		@procedures = Procedure.all
