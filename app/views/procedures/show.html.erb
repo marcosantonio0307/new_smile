@@ -18,17 +18,17 @@
 						<% if @procedure.avatar.attached? %>
 							<%= image_tag @procedure.avatar %>
 							<% if signed_in? %>
-								<%= form_tag procedure_avatar_path(@procedure), method: :put, multipart: true do %>
-									<p align="right"><%= file_field_tag :avatar %></p>
-									<p><%= button_to :Enviar, procedure_avatar_path(@procedure) ,class: 'btn btn-success' %></p>
+								<%= form_with model: @procedure, url: procedure_avatar_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
+									<p align="right"><%= f.file_field :avatar %></p>
+									<p><%= f.submit :Enviar, class: 'btn btn-success' %></p>
 								<% end %>
 							<% end %>
 						<% else %>
 							<h3>Não há imagem</h3>
 							<% if signed_in? %>
-								<%= form_tag procedure_avatar_path(@procedure), method: :put, multipart: true do %>
-									<p align="right"><%= file_field_tag :avatar %></p>
-									<p><%= button_to :Enviar, procedure_avatar_path(@procedure) ,class: 'btn btn-success' %></p>
+								<%= form_with model: @procedure, url: procedure_avatar_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
+									<p align="right"><%= f.file_field :avatar %></p>
+									<p><%= f.submit :Enviar, class: 'btn btn-success' %></p>
 								<% end %>
 							<% end %>
 						<% end %>
@@ -117,11 +117,11 @@
 				<div id="photos-box" class="container-procedure no-active">
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<% if signed_in? %>
-						<%= form_tag procedure_photos_path(@procedure), method: :put, multipart: true do %>
+						<%= form_with model: @procedure, url: procedure_photos_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
 							<div class="add-photos">
 								<p><b>Adicionar Nova Imagem</b></p>
-								<span><%= file_field_tag :photos %></span> 
-								<span style="margin-left: -3em"><%= button_to :Salvar, procedure_photos_path(@procedure) ,class: 'btn btn-success' %></span>
+								<span><%= f.file_field :photos %></span> 
+								<span style="margin-left: -3em"><%= f.submit :Enviar,class: 'btn btn-success' %></span>
 							</div>
 						<% end %>
 						<% end %>
@@ -138,11 +138,11 @@
 				<div id="rayx-box" class="container-procedure no-active">
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<% if signed_in? %>
-						<%= form_tag procedure_raysx_path(@procedure), method: :put, multipart: true do %>
+						<%= form_with model: @procedure, url: procedure_raysx_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
 							<div class="add-photos">
 								<p><b>Adicionar Nova Imagem</b></p>
-								<span><%= file_field_tag :raysx %></span> 
-								<span style="margin-left: -3em"><%= button_to :Salvar, procedure_raysx_path(@procedure) ,class: 'btn btn-success' %></span>
+								<span><%= f.file_field :raysx %></span> 
+								<span style="margin-left: -3em"><%= f.submit :Enviar, class: 'btn btn-success' %></span>
 							</div>
 						<% end %>
 						<% end %>
@@ -159,11 +159,11 @@
 				<div id="telerayx-box" class="container-procedure no-active">
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<% if signed_in? %>
-						<%= form_tag procedure_teleraysx_path(@procedure), method: :put, multipart: true do %>
+						<%= form_with model: @procedure, url: procedure_teleraysx_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
 							<div class="add-photos">
 								<p><b>Adicionar Nova Imagem</b></p>
-								<span><%= file_field_tag :teleraysx %></span> 
-								<span style="margin-left: -3em"><%= button_to :Salvar, procedure_teleraysx_path(@procedure) ,class: 'btn btn-success' %></span>
+								<span><%= f.file_field :teleraysx %></span> 
+								<span style="margin-left: -3em"><%= f.submit :Enviar, class: 'btn btn-success' %></span>
 							</div>
 						<% end %>
 						<% end %>
@@ -180,11 +180,11 @@
 				<div id="traced-box" class="container-procedure no-active">
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<% if signed_in? %>
-						<%= form_tag procedure_traceds_path(@procedure), method: :put, multipart: true do %>
+						<%= form_with model: @procedure, url: procedure_traceds_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
 							<div class="add-photos">
 								<p><b>Adicionar Nova Imagem</b></p>
-								<span><%= file_field_tag :traceds %></span> 
-								<span style="margin-left: -3em"><%= button_to :Salvar, procedure_traceds_path(@procedure) ,class: 'btn btn-success' %></span>
+								<span><%= f.file_field :traceds %></span> 
+								<span style="margin-left: -3em"><%= f.submit :Enviar ,class: 'btn btn-success' %></span>
 							</div>
 						<% end %>
 						<% end %>
@@ -201,11 +201,11 @@
 				<div id="usp-box" class="container-procedure no-active">
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<% if signed_in? %>
-						<%= form_tag procedure_usps_path(@procedure), method: :put, multipart: true do %>
+						<%= form_with model: @procedure, url: procedure_usps_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
 							<div class="add-photos">
 								<p><b>Adicionar Nova Imagem</b></p>
-								<span><%= file_field_tag :usps %></span> 
-								<span style="margin-left: -3em"><%= button_to :Salvar, procedure_usps_path(@procedure) ,class: 'btn btn-success' %></span>
+								<span><%= f.file_field :usps %></span> 
+								<span style="margin-left: -3em"><%= f.submit :Enviar ,class: 'btn btn-success' %></span>
 							</div>
 						<% end %>
 						<% end %>

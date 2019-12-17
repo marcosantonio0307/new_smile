@@ -1,6 +1,5 @@
 class ProceduresController < ApplicationController
 	before_action :authenticate_user!, only:[:index, :create, :update, :reports, :avatar, :photos, :raysx, :teleraysx, :traceds, :usps, :purge_photos, :purge_raysx, :purge_teleraysx, :purge_traceds, :purge_usps]
-
 	def index
 		@procedures = Procedure.all
 	end
@@ -57,37 +56,37 @@ class ProceduresController < ApplicationController
 
 	def avatar
 		@procedure = Procedure.find(params[:id])
-		@procedure.avatar.attach(params[:avatar])
+		@procedure.avatar.attach(params[:procedure][:avatar])
 		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
 	end
 
 	def photos
 		@procedure = Procedure.find(params[:id])
-		@procedure.photos.attach(params[:photos])
+		@procedure.photos.attach(params[:procedure][:photos])
 		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
 	end
 
 	def raysx
 		@procedure = Procedure.find(params[:id])
-		@procedure.raysx.attach(params[:raysx])
+		@procedure.raysx.attach(params[:procedure][:raysx])
 		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
 	end
 
 	def teleraysx
 		@procedure = Procedure.find(params[:id])
-		@procedure.teleraysx.attach(params[:teleraysx])
+		@procedure.teleraysx.attach(params[:procedure][:teleraysx])
 		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
 	end
 
 	def traceds
 		@procedure = Procedure.find(params[:id])
-		@procedure.traceds.attach(params[:traceds])
+		@procedure.traceds.attach(params[:procedure][:traceds])
 		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
 	end
 
 	def usps
 		@procedure = Procedure.find(params[:id])
-		@procedure.usps.attach(params[:usps])
+		@procedure.usps.attach(params[:procedure][:usps])
 		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
 	end
 
