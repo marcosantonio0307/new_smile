@@ -5,12 +5,12 @@ Rails.application.routes.draw do
   devise_for :users
 
   get 'procedures/:id/reports' => 'procedures#reports', as: :procedure_reports
-  put 'procedures/:id/avatar' => 'procedures#avatar', as: :procedure_avatar
-  put 'procedures/:id/photos' => 'procedures#photos', as: :procedure_photos
-  put 'procedures/:id/raysx' => 'procedures#raysx', as: :procedure_raysx
-  put 'procedures/:id/teleraysx' => 'procedures#teleraysx', as: :procedure_teleraysx
-  put 'procedures/:id/traceds' => 'procedures#traceds', as: :procedure_traceds
-  put 'procedures/:id/usps' => 'procedures#usps', as: :procedure_usps
+  post 'procedures/:id/avatar' => 'procedures#avatar', as: :procedure_avatar
+  post 'procedures/:id/photos' => 'procedures#photos', as: :procedure_photos
+  post 'procedures/:id/raysx' => 'procedures#raysx', as: :procedure_raysx
+  post 'procedures/:id/teleraysx' => 'procedures#teleraysx', as: :procedure_teleraysx
+  post 'procedures/:id/traceds' => 'procedures#traceds', as: :procedure_traceds
+  post 'procedures/:id/usps' => 'procedures#usps', as: :procedure_usps
   delete 'procedures/:id/photos/:photos_id' => 'procedures#purge_photos', as: :purge_photos
   delete 'procedures/:id/raysx/:raysx_id' => 'procedures#purge_raysx', as: :purge_raysx
   delete 'procedures/:id/teleraysx/:teleraysx_id' => 'procedures#purge_teleraysx', as: :purge_teleraysx
