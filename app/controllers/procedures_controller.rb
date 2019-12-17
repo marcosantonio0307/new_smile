@@ -92,31 +92,31 @@ class ProceduresController < ApplicationController
 
 	def purge_photos
 		@procedure = Procedure.find(params[:id])
-		@procedure.photos.destroy params[:photos_id]
+		@procedure.photos.find(params[:photos_id]).purge
 		redirect_to procedure_path(@procedure), notice: 'Imagem Removida!'
 	end
 
 	def purge_raysx
 		@procedure = Procedure.find(params[:id])
-		@procedure.raysx.destroy params[:raysx_id]
+		@procedure.raysx.find(params[:raysx_id]).purge
 		redirect_to procedure_path(@procedure), notice: 'Imagem Removida!'
 	end
 
 	def purge_teleraysx
 		@procedure = Procedure.find(params[:id])
-		@procedure.teleraysx.destroy params[:teleraysx_id]
+		@procedure.teleraysx.find(params[:teleraysx_id]).purge
 		redirect_to procedure_path(@procedure), notice: 'Imagem Removida!'
 	end
 
 	def purge_traceds
 		@procedure = Procedure.find(params[:id])
-		@procedure.traceds.destroy params[:traceds_id]
+		@procedure.traceds.find(params[:traceds_id]).purge
 		redirect_to procedure_path(@procedure), notice: 'Imagem Removida!'
 	end
 
 	def purge_usps
 		@procedure = Procedure.find(params[:id])
-		@procedure.usps.destroy params[:usps_id]
+		@procedure.usps.find(params[:usps_id]).purge
 		redirect_to procedure_path(@procedure), notice: 'Imagem Removida!'
 	end
 end
