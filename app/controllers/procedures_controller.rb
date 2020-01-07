@@ -1,7 +1,11 @@
 class ProceduresController < ApplicationController
 	before_action :authenticate_user!, only:[:index, :create, :update, :reports, :avatar, :photos, :raysx, :teleraysx, :traceds, :usps, :purge_photos, :purge_raysx, :purge_teleraysx, :purge_traceds, :purge_usps]
 	def index
-		@procedures = Procedure.all
+		@procedures = Procedure.where(status: false)
+	end
+
+	def finished
+		@procedures = Procedure.where(status: true)
 	end
 
 	def new
@@ -27,6 +31,12 @@ class ProceduresController < ApplicationController
 		values = params.require(:procedure).permit!
 		@procedure.update values
 		redirect_to procedure_path(@procedure), notice: 'Processo Atualizado!'
+	end
+
+	def finish_procedure
+		@procedure = Procedure.find(params[:id])
+		@procedure.update(status: true)
+		redirect_to procedure_path(@procedure), notice: 'Processo finalizado!'
 	end
 
 	def reports
@@ -57,6 +67,7 @@ class ProceduresController < ApplicationController
 	def avatar
 		@procedure = Procedure.find(params[:id])
 		@procedure.avatar.attach(params[:procedure][:avatar])
+		@procedure.resize_image
 		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
 	end
 

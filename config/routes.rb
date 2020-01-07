@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   get 'users/sign_up' => 'procedures#notfound'
   devise_for :users
-
+  get 'procedures/finished' => 'procedures#finished'
+  get 'procedures/:id/finish_procedure' => 'procedures#finish_procedure', as: :finish_procedure
   get 'procedures/:id/reports' => 'procedures#reports', as: :procedure_reports
   post 'procedures/:id/avatar' => 'procedures#avatar', as: :procedure_avatar
   post 'procedures/:id/photos' => 'procedures#photos', as: :procedure_photos
