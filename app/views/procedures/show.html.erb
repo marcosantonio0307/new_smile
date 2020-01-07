@@ -16,7 +16,7 @@
 				<div id="personalInformations-box" class="container-procedure no-active">
 					<div class="avatar">
 						<% if @procedure.avatar.attached? %>
-							<%= image_tag @procedure.avatar %>
+							<%= link_to (image_tag @procedure.avatar), url_for(@procedure.avatar) %>
 							<% if signed_in? %>
 								<%= form_with model: @procedure, url: procedure_avatar_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
 									<p align="right"><%= f.file_field :avatar %></p>
@@ -35,7 +35,10 @@
 					</div>
 					<h4><b>* INFORMAÇOES DO PACIENTE</b>
 						<% if signed_in? %>
-						<span style="margin-left: 1em;"><%= link_to :Editar, edit_procedure_path(@procedure), class: 'btn btn-warning' %></span>
+							<span style="margin-left: 1em;"><%= link_to :Editar, edit_procedure_path(@procedure), class: 'btn btn-warning' %></span>
+							<% if @procedure.status == false %>
+								<span style="margin-left: 0.5em;"><%= link_to 'Finalizar Processo', finish_procedure_path(@procedure), class: 'btn btn-success', data:{confirm: 'Finalizar este procedimento?'} %></span>
+							<% end %>
 						<% end %>
 					</h4><br>
 					<h3><b><%= @procedure.patient %></b></h3>

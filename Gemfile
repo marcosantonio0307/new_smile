@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'aws-sdk-s3'
 gem 'mini_magick'
+gem 'font-awesome-rails'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

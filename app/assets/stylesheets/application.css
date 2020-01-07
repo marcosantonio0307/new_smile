@@ -11,6 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require font-awesome
  *= require_self
  */
 
@@ -31,19 +32,58 @@ body, input, button {
 }
 
 .top-bar {
-	width: 110%;
+	width: 100%;
+	height: 50px;
+	background: #fff;
 	position: fixed;
 	z-index: 1;
 }
 
 .navbar {
-	height: 50px;
-	background: red;
+	width: 89%;
+	float: right;
+	background: #DF0101;
+	border-radius: 0;
+}
+
+.menu {
+	width: 50%;
+	float: left;
+	margin-top: 20px;
+	margin-left: 5px;
+}
+
+.menu a {
+	color: #fff;
+	font-weight: bold;
+	padding: 0.2em 0.5em;
+	margin-left: 8px;
+}
+
+.menu a:hover {
+	color: #d8d8d8;
+	text-decoration: none;
+}
+
+.btn-exit {
+	float: right; 
+	font-size: 2em; 
+	margin-right: 1em;
+}
+
+.btn-exit a {
+	color: #fff;
+}
+
+.btn-exit a:hover {
+	color: #d8d8d8;
 }
 
 .logo {
 	height: 50px;
 	background-color: #fff;
+	width: 10%;
+	float: left;
 }
 
 .logo img {
@@ -59,6 +99,11 @@ body, input, button {
 .container-medium {
 	width: 70%;
 	margin: 1em auto;
+}
+
+.container-big {
+	width: 95%;
+	margin: 5em auto;
 }
 
 .check-box {
