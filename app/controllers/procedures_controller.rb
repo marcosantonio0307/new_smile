@@ -1,5 +1,5 @@
 class ProceduresController < ApplicationController
-	before_action :authenticate_user!, only:[:index, :create, :update, :reports, :avatar, :photos, :raysx, :teleraysx, :traceds, :usps, :purge_photos, :purge_raysx, :purge_teleraysx, :purge_traceds, :purge_usps]
+	before_action :authenticate_user!, only:[:index, :create, :reports, :avatar, :image, :purge_image,]
 	def index
 		@procedures = Procedure.where(status: false)
 	end
@@ -67,67 +67,42 @@ class ProceduresController < ApplicationController
 	def avatar
 		@procedure = Procedure.find(params[:id])
 		@procedure.avatar.attach(params[:procedure][:avatar])
-		@procedure.resize_image
 		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
 	end
 
-	def photos
+	def image
 		@procedure = Procedure.find(params[:id])
-		@procedure.photos.attach(params[:procedure][:photos])
+		image_category = params[:procedure][:category]
+		if image_category == 'photos'
+			@procedure.photos.attach(params[:procedure][:image])
+		elsif image_category == 'raysx'
+			@procedure.raysx.attach(params[:procedure][:image])
+		elsif image_category == 'teleraysx'
+			@procedure.teleraysx.attach(params[:procedure][:image])
+		elsif image_category == 'traceds'
+			@procedure.traceds.attach(params[:procedure][:image])
+		elsif image_category == 'usps'
+			@procedure.usps.attach(params[:procedure][:image])
+		end	
+		
 		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
 	end
 
-	def raysx
+	def purge_image
 		@procedure = Procedure.find(params[:id])
-		@procedure.raysx.attach(params[:procedure][:raysx])
-		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
-	end
+		image_category = params[:category]
+		if image_category == 'photos'
+			@procedure.photos.find(params[:image_id]).purge
+		elsif image_category == 'raysx'
+			@procedure.raysx.find(params[:image_id]).purge
+		elsif image_category == 'teleraysx'
+			@procedure.teleraysx.find(params[:image_id]).purge
+		elsif image_category == 'traceds'
+			@procedure.traceds.find(params[:image_id]).purge
+		elsif image_category == 'usps'
+			@procedure.usps.find(params[:image_id]).purge
+		end
 
-	def teleraysx
-		@procedure = Procedure.find(params[:id])
-		@procedure.teleraysx.attach(params[:procedure][:teleraysx])
-		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
-	end
-
-	def traceds
-		@procedure = Procedure.find(params[:id])
-		@procedure.traceds.attach(params[:procedure][:traceds])
-		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
-	end
-
-	def usps
-		@procedure = Procedure.find(params[:id])
-		@procedure.usps.attach(params[:procedure][:usps])
-		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
-	end
-
-	def purge_photos
-		@procedure = Procedure.find(params[:id])
-		@procedure.photos.find(params[:photos_id]).purge
-		redirect_to procedure_path(@procedure), notice: 'Imagem Removida!'
-	end
-
-	def purge_raysx
-		@procedure = Procedure.find(params[:id])
-		@procedure.raysx.find(params[:raysx_id]).purge
-		redirect_to procedure_path(@procedure), notice: 'Imagem Removida!'
-	end
-
-	def purge_teleraysx
-		@procedure = Procedure.find(params[:id])
-		@procedure.teleraysx.find(params[:teleraysx_id]).purge
-		redirect_to procedure_path(@procedure), notice: 'Imagem Removida!'
-	end
-
-	def purge_traceds
-		@procedure = Procedure.find(params[:id])
-		@procedure.traceds.find(params[:traceds_id]).purge
-		redirect_to procedure_path(@procedure), notice: 'Imagem Removida!'
-	end
-
-	def purge_usps
-		@procedure = Procedure.find(params[:id])
-		@procedure.usps.find(params[:usps_id]).purge
 		redirect_to procedure_path(@procedure), notice: 'Imagem Removida!'
 	end
 end

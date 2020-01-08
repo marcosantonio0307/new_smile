@@ -16,7 +16,7 @@
 				<div id="personalInformations-box" class="container-procedure no-active">
 					<div class="avatar">
 						<% if @procedure.avatar.attached? %>
-							<%= link_to (image_tag @procedure.avatar), url_for(@procedure.avatar) %>
+							<%= link_to (image_tag @procedure.avatar.variant(resize: '250x300!').processed), url_for(@procedure.avatar) %>
 							<% if signed_in? %>
 								<%= form_with model: @procedure, url: procedure_avatar_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
 									<p align="right"><%= f.file_field :avatar %></p>
@@ -34,8 +34,8 @@
 						<% end %>
 					</div>
 					<h4><b>* INFORMAÇOES DO PACIENTE</b>
+						<span style="margin-left: 1em;"><%= link_to :Editar, edit_procedure_path(@procedure), class: 'btn btn-warning' %></span>
 						<% if signed_in? %>
-							<span style="margin-left: 1em;"><%= link_to :Editar, edit_procedure_path(@procedure), class: 'btn btn-warning' %></span>
 							<% if @procedure.status == false %>
 								<span style="margin-left: 0.5em;"><%= link_to 'Finalizar Processo', finish_procedure_path(@procedure), class: 'btn btn-success', data:{confirm: 'Finalizar este procedimento?'} %></span>
 							<% end %>
@@ -120,20 +120,23 @@
 				<div id="photos-box" class="container-procedure no-active">
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<% if signed_in? %>
-						<%= form_with model: @procedure, url: procedure_photos_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
-							<div class="add-photos">
-								<p><b>Adicionar Nova Imagem</b></p>
-								<span><%= f.file_field :photos %></span> 
-								<span style="margin-left: -3em"><%= f.submit :Enviar,class: 'btn btn-success' %></span>
-							</div>
-						<% end %>
+							<%= form_with model: @procedure, url: procedure_image_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
+								<div class="add-photos">
+									<%= f.hidden_field :category, value: 'photos' %>
+									<p><b>Adicionar Nova Imagem</b></p>
+									<span><%= f.file_field :image %></span> 
+									<span style="margin-left: -3em"><%= f.submit :Enviar,class: 'btn btn-success' %></span>
+								</div>
+							<% end %>
 						<% end %>
 					</div>
 					<% @procedure.photos.each do |photo| %>
 					<div class="col-lg-3 col-md-3 col-sm-12 photo">
-						<%= link_to (image_tag photo), url_for(photo) %>
+						<%= link_to (image_tag photo.variant(resize: '250x250!').processed), url_for(photo) %>
 						<% if signed_in? %>
-						<%= link_to :Remover, purge_photos_path(@procedure, photo), method: :delete, class: 'btn btn-danger', data:{confirm: 'Remover esta imagem?'} %>
+							<%= link_to purge_image_path(@procedure, 'photos', photo ), method: :delete, data:{confirm: 'Remover esta imagem?'} do %>
+								<i class="fa fa-trash btn-delete"></i>
+							<% end %>
 						<% end %>
 					</div>
 					<% end %>
@@ -141,20 +144,23 @@
 				<div id="rayx-box" class="container-procedure no-active">
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<% if signed_in? %>
-						<%= form_with model: @procedure, url: procedure_raysx_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
-							<div class="add-photos">
-								<p><b>Adicionar Nova Imagem</b></p>
-								<span><%= f.file_field :raysx %></span> 
-								<span style="margin-left: -3em"><%= f.submit :Enviar, class: 'btn btn-success' %></span>
-							</div>
-						<% end %>
+							<%= form_with model: @procedure, url: procedure_image_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
+								<div class="add-photos">
+									<%= f.hidden_field :category, value: 'raysx' %>
+									<p><b>Adicionar Nova Imagem</b></p>
+									<span><%= f.file_field :image %></span> 
+									<span style="margin-left: -3em"><%= f.submit :Enviar,class: 'btn btn-success' %></span>
+								</div>
+							<% end %>
 						<% end %>
 					</div>
 					<% @procedure.raysx.each do |photo| %>
 					<div class="col-lg-3 col-md-3 col-sm-12 photo">
-						<%= link_to (image_tag photo), url_for(photo) %>
+						<%= link_to (image_tag photo.variant(resize: '250x250!').processed), url_for(photo) %>
 						<% if signed_in? %>
-						<%= link_to :Remover, purge_raysx_path(@procedure, photo), method: :delete, class: 'btn btn-danger', data:{confirm: 'Remover esta imagem?'} %>
+							<%= link_to purge_image_path(@procedure, 'raysx', photo ), method: :delete, data:{confirm: 'Remover esta imagem?'} do %>
+								<i class="fa fa-trash btn-delete"></i>
+							<% end %>
 						<% end %>
 					</div>
 					<% end %>
@@ -162,20 +168,23 @@
 				<div id="telerayx-box" class="container-procedure no-active">
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<% if signed_in? %>
-						<%= form_with model: @procedure, url: procedure_teleraysx_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
-							<div class="add-photos">
-								<p><b>Adicionar Nova Imagem</b></p>
-								<span><%= f.file_field :teleraysx %></span> 
-								<span style="margin-left: -3em"><%= f.submit :Enviar, class: 'btn btn-success' %></span>
-							</div>
-						<% end %>
+							<%= form_with model: @procedure, url: procedure_image_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
+								<div class="add-photos">
+									<%= f.hidden_field :category, value: 'teleraysx' %>
+									<p><b>Adicionar Nova Imagem</b></p>
+									<span><%= f.file_field :image %></span> 
+									<span style="margin-left: -3em"><%= f.submit :Enviar,class: 'btn btn-success' %></span>
+								</div>
+							<% end %>
 						<% end %>
 					</div>
 					<% @procedure.teleraysx.each do |photo| %>
 					<div class="col-lg-3 col-md-3 col-sm-12 photo">
-						<%= link_to (image_tag photo), url_for(photo) %>
+						<%= link_to (image_tag photo.variant(resize: '250x250!').processed), url_for(photo) %>
 						<% if signed_in? %>
-						<%= link_to :Remover, purge_teleraysx_path(@procedure, photo), method: :delete, class: 'btn btn-danger', data:{confirm: 'Remover esta imagem?'} %>
+							<%= link_to purge_image_path(@procedure, 'teleraysx', photo ), method: :delete, data:{confirm: 'Remover esta imagem?'} do %>
+								<i class="fa fa-trash btn-delete"></i>
+							<% end %>
 						<% end %>
 					</div>
 					<% end %>
@@ -183,20 +192,23 @@
 				<div id="traced-box" class="container-procedure no-active">
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<% if signed_in? %>
-						<%= form_with model: @procedure, url: procedure_traceds_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
-							<div class="add-photos">
-								<p><b>Adicionar Nova Imagem</b></p>
-								<span><%= f.file_field :traceds %></span> 
-								<span style="margin-left: -3em"><%= f.submit :Enviar ,class: 'btn btn-success' %></span>
-							</div>
-						<% end %>
+							<%= form_with model: @procedure, url: procedure_image_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
+								<div class="add-photos">
+									<%= f.hidden_field :category, value: 'traceds' %>
+									<p><b>Adicionar Nova Imagem</b></p>
+									<span><%= f.file_field :image %></span> 
+									<span style="margin-left: -3em"><%= f.submit :Enviar,class: 'btn btn-success' %></span>
+								</div>
+							<% end %>
 						<% end %>
 					</div>
 					<% @procedure.traceds.each do |photo| %>
 					<div class="col-lg-3 col-md-3 col-sm-12 photo">
-						<%= link_to (image_tag photo), url_for(photo) %>
+						<%= link_to (image_tag photo.variant(resize: '250x250!').processed), url_for(photo) %>
 						<% if signed_in? %>
-						<%= link_to :Remover, purge_traceds_path(@procedure, photo), method: :delete, class: 'btn btn-danger', data:{confirm: 'Remover esta imagem?'} %>
+							<%= link_to purge_image_path(@procedure, 'traceds', photo ), method: :delete, data:{confirm: 'Remover esta imagem?'} do %>
+								<i class="fa fa-trash btn-delete"></i>
+							<% end %>
 						<% end %>
 					</div>
 					<% end %>
@@ -204,20 +216,23 @@
 				<div id="usp-box" class="container-procedure no-active">
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<% if signed_in? %>
-						<%= form_with model: @procedure, url: procedure_usps_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
-							<div class="add-photos">
-								<p><b>Adicionar Nova Imagem</b></p>
-								<span><%= f.file_field :usps %></span> 
-								<span style="margin-left: -3em"><%= f.submit :Enviar ,class: 'btn btn-success' %></span>
-							</div>
-						<% end %>
+							<%= form_with model: @procedure, url: procedure_image_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
+								<div class="add-photos">
+									<%= f.hidden_field :category, value: 'usps' %>
+									<p><b>Adicionar Nova Imagem</b></p>
+									<span><%= f.file_field :image %></span> 
+									<span style="margin-left: -3em"><%= f.submit :Enviar,class: 'btn btn-success' %></span>
+								</div>
+							<% end %>
 						<% end %>
 					</div>
 					<% @procedure.usps.each do |photo| %>
 					<div class="col-lg-3 col-md-3 col-sm-12 photo">
-						<%= link_to (image_tag photo), url_for(photo) %>
+						<%= link_to (image_tag photo.variant(resize: '250x250!').processed), url_for(photo) %>
 						<% if signed_in? %>
-						<%= link_to :Remover, purge_usps_path(@procedure, photo), method: :delete, class: 'btn btn-danger', data:{confirm: 'Remover esta imagem?'} %>
+							<%= link_to purge_image_path(@procedure, 'usps', photo ), method: :delete, data:{confirm: 'Remover esta imagem?'} do %>
+								<i class="fa fa-trash btn-delete"></i>
+							<% end %>
 						<% end %>
 					</div>
 					<% end %>
