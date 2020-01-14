@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Imprimir <%= @procedure.id %></title>
+  	<meta charset="utf-8">
+  	<style>
+  		.page {
+  			float: left;
+  			width: 100%;
+  			height: 1300px; 
+  		}
+  		.logo {
+  			float: left;
+  		}
+		.navbar {
+			width: 85%;
+			height: 50px;
+			float: right;
+			background: #DF0101;
+			border-radius: 0;
+		}
+		.avatar {
+			float: right;
+			width: 250px;
+			height: 300px;
+			margin-right: 1em;
+			margin-top: 1em;
+		}
+		.container-procedure {
+			width: 100%;
+			float: left;
+			margin-top: 2em;
+		}
+		.check-box {
+			width: 33%;
+			float: left;
+			margin-bottom: 2em;
+		}
+		.table-bordered {
+			width: 100%;
+			border-collapse: collapse;
+		}
+		.table-bordered th {
+			border: solid 1px;
+		}
+		.table-bordered td {
+			border: solid 1px;
+		}
+
+  	</style>
+  </head>
+  <body>
+  	<div class="page">
+	  	<div class="top-bar">
+	      <div class="logo">
+		    <%= wicked_pdf_image_tag 'logo.jpg', :width=>'100px' %>
+		  </div>
+		  <div class="navbar"></div>
+	   	</div>
+
+		<div id="personalInformations-box" class="container-procedure no-active">
+			<div class="avatar">
+				<% if @procedure.avatar.attached? %>
+					<%= image_tag @procedure.avatar.variant(resize: '250x300!').processed %>
+				<% else %>
+					<h3>Não há imagem</h3>
+				<% end %>
+			</div>
+			<br>
+			<h3><b><%= @procedure.patient %></b></h3>
+			<h3><b>DR. <%= @procedure.doctor %></b></h3>
+			<h4><b>DATA: </b><%= datebr(@procedure.date_procedure) %>
+			<span style="margin-left: 3em;"><b>SEXO: </b><%= @procedure.sex %></span>
+			<span style="margin-left: 3em;"><b>CIDADE: </b><%= @procedure.city %></span> 
+			</h4>
+			<h4><b>OBS: </b><%= @procedure.note %></h4>
+			<hr>
+
+			<h4><b>* INFORMAÇOES ORTODONTICAS</b></h4><br>
+			<h4><b>TRATAMENTO ORTODONTICO ANTERIOR: </b><%= @procedure.last_procedure %></h4>
+			<h4><b>RAZOES PARA O TRATAMENTO ORTODONTICO: </b><%= @procedure.reason %></h4>
+			<h4><b>GRAU DE MOTIVAÇAO: </b><%= @procedure.motivation %></h4><br>
+			
+			<h4 align="center"><b>HISTORICO MEDICO</b></h4>
+			<h4><b>O PACIENTE JA APRESENTOU</b></h4>
+			<hr>
+			<%= form_for @procedure do |f| %>
+			<div class="col-lg-12 col-md-12 col-sm-12">
+				<div class="form-group col-lg-4 col-md-4 check-box">
+					<%= f.check_box :item_1 %>
+					<%= f.label 'Asma' %><br>
+					<%= f.check_box :item_2 %>
+					<%= f.label 'Anemia' %><br>
+					<%= f.check_box :item_3 %>
+					<%= f.label 'Alergia' %><br>
+					<%= f.check_box :item_4 %>
+					<%= f.label 'Doença Sanguínea' %><br>
+					<%= f.check_box :item_5 %>
+					<%= f.label 'Doença Óssea' %><br>
+					<%= f.check_box :item_6 %>
+					<%= f.label 'Diabetes' %><br>
+				</div>
+				<div class="form-group col-lg-4 col-md-4 check-box">
+					<%= f.check_box :item_7 %>
+					<%= f.label 'Eplepsia' %><br>
+					<%= f.check_box :item_8 %>
+					<%= f.label 'Problemas Emocionais' %><br>
+					<%= f.check_box :item_9 %>
+					<%= f.label 'Problemas Endócrinos' %><br>
+					<%= f.check_box :item_10 %>
+					<%= f.label 'Doenças Cardíacas' %><br>
+					<%= f.check_box :item_11 %>
+					<%= f.label 'Disturbios Auditivos' %><br>
+					<%= f.check_box :item_12 %>
+					<%= f.label 'Disturbios Respiratórios' %><br>
+				</div>
+				<div class="form-group col-lg-4 col-md-4 check-box">
+					<%= f.check_box :item_13 %>
+					<%= f.label 'Traumatísmo de Face/Cabeça' %><br>
+					<%= f.check_box :item_14 %>
+					<%= f.label 'Herpes' %><br>
+					<%= f.check_box :item_15 %>
+					<%= f.label 'Hepatite' %><br>
+					<%= f.check_box :item_16 %>
+					<%= f.label 'Febre Reumática' %><br>
+					<%= f.check_box :item_17 %>
+					<%= f.label 'Fraturas Ósseas' %><br>
+					<%= f.check_box :item_18 %>
+					<%= f.label 'Outros' %><br>
+				</div>
+			</div>
+			<% end %>
+			<div>
+				<h4><b>INGERE DROGAS OU MEDICAMENTOS: </b><%= @procedure.drugs %></h4>
+				<h4><b>ANTICONCEPCIONAL: </b><%= @procedure.contraceptive %></h4>
+				<h4><b>ANOMALIASCONGENITAS: </b><%= @procedure.anomaly %></h4>
+				<h4><b>ESTAGIO DE DESENVOLVIMENTO OSSEO: </b><%= @procedure.bone_development %>
+				<span style="margin-left: 6em"><b>TIPO FISICO: </b><%= @procedure.physical_type %></span>
+				<span style="margin-left: 3em;"><b>ALTURA: </b><%= @procedure.height %></span>
+				<span style="margin-left: 3em;"><b>PESO: </b><%= @procedure.weight %></span></h4>
+				<h4><b>CIRURGIA ANTERIOR: </b><%= @procedure.last_surgery %>
+				<span style="margin-left: 6em;"><b>SAUDE ATUAL: </b><%= @cheers %></span>
+				</h4>
+			</div>
+		</div>
+	</div>
+	<div class="page">
+		<div>
+			<h2 align="center"><b>PROCEDIMENTOS REALIZADOS</b></h2><br><br>
+			<table class="table-bordered">
+				<thead>
+					<th>Data</th>
+					<th>Procedimento Realizado no Paciente</th>
+					<th>Procedimento Futuro</th>
+				</thead>
+				<tbody>
+					<% @procedure.works.each do |work| %>
+					<tr>
+						<td><%= datebr(work.date_work) %></td>
+						<td><%= work.description %></td>
+						<td><%= work.next_work %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+  </body>
+</html>

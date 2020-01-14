@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post 'procedures/:id/avatar' => 'procedures#avatar', as: :procedure_avatar
   post 'procedures/:id/image' => 'procedures#image', as: :procedure_image
   delete 'procedures/:id/image/:category/:image_id' => 'procedures#purge_image', as: :purge_image
+  get 'procedures/:id/print' => 'procedures#print'
   resources :procedures, only:[:new, :create, :edit, :update, :destroy, :show] do
   	resources :works, only:[:new, :create, :edit, :update, :destroy, :show]
   end

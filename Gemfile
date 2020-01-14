@@ -20,6 +20,8 @@ gem 'devise'
 gem 'aws-sdk-s3'
 gem 'mini_magick'
 gem 'font-awesome-rails'
+gem 'wicked_pdf', '= 1.4.0'
+gem 'wkhtmltopdf-binary', '= 0.12.4'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

@@ -39,10 +39,12 @@ class ProceduresController < ApplicationController
 		redirect_to procedure_path(@procedure), notice: 'Processo finalizado!'
 	end
 
-	def reports
+	def print
 		@procedure = Procedure.find(params[:id])
-		@procedure.update(tooth: params[:tooth], report: params[:report])
-		redirect_to procedure_path(@procedure), notice: 'Atualizado!'
+		respond_to do |format|
+			format.html
+			format.pdf { render template: 'procedures/print', pdf: 'print'}
+		end
 	end
 
 	def show
@@ -83,6 +85,8 @@ class ProceduresController < ApplicationController
 			@procedure.traceds.attach(params[:procedure][:image])
 		elsif image_category == 'usps'
 			@procedure.usps.attach(params[:procedure][:image])
+		elsif image_category == 'reports'
+			@procedure.reports.attach(params[:procedure][:image])
 		end	
 		
 		redirect_to procedure_path(@procedure), notice: 'Imagem Adicionada!'
@@ -101,6 +105,8 @@ class ProceduresController < ApplicationController
 			@procedure.traceds.find(params[:image_id]).purge
 		elsif image_category == 'usps'
 			@procedure.usps.find(params[:image_id]).purge
+		elsif image_category == 'reports'
+			@procedure.reports.find(params[:image_id]).purge
 		end
 
 		redirect_to procedure_path(@procedure), notice: 'Imagem Removida!'
