@@ -5,6 +5,7 @@ class Procedure < ApplicationRecord
 	has_many_attached :teleraysx, dependent: :destroy
 	has_many_attached :traceds, dependent: :destroy
 	has_many_attached :usps, dependent: :destroy
+	has_many_attached :reports, dependent: :destroy
 	has_many :works, dependent: :destroy
 
 	def thumbnail

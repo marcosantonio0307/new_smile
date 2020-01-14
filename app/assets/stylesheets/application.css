@@ -156,6 +156,12 @@ body, input, button {
 	margin-top: -25px;
 }
 
+.btn-print {
+	font-size: 1.8em;
+	color: #1c1c1c;
+	margin-left: 40px;
+}
+
 .photo img {
 	float: left;
 }

@@ -11,6 +11,9 @@
 				<span id="traced" class="tabs" onclick="activeTab('traced')" >Traçado Cefalometrico</span>
 				<span id="usp" class="tabs" onclick="activeTab('usp')" >Fator USP</span>
 				<span id="report" class="tabs" onclick="activeTab('report')" >Laudo Radiográfico</span>
+				<%= link_to "#{@procedure.id}/print.pdf" do %>
+					<i class="fa fa-print btn-print"></i>
+				<% end %>
 			</div>
 			<div class="procedure-box">
 				<div id="personalInformations-box" class="container-procedure no-active">
@@ -239,22 +242,27 @@
 				</div>
 				<div id="report-box" class="container-procedure no-active">
 					<div class="col-lg-12 col-md-12 col-sm-12">
-						<%= form_tag procedure_reports_path(@procedure), method: :get do %>
-						<h3 align="center"><b>TIPO DE DENTIÇÃO</b></h3>
-						<div class="form-group box1" >
-							<%= text_area_tag :tooth, @procedure.tooth , class: 'form-control' %>	
-						</div><br>
-						<h3 align="center"><b>ACHADOS RADIOGRAFICOS</b></h3>
-						<div class="form-group box2">
-							<%= text_area_tag :report, @procedure.report, class: 'form-control' %>
-						</div>
 						<% if signed_in? %>
-						<div>
-							<%= button_to :Salvar, procedure_reports_path(@procedure), class: 'btn btn-success' %>
-						</div>
-						<% end %>
+							<%= form_with model: @procedure, url: procedure_image_path(@procedure), method: :post, id: 'procedures', local: true do |f| %>
+								<div class="add-photos">
+									<%= f.hidden_field :category, value: 'reports' %>
+									<p><b>Adicionar Nova Imagem</b></p>
+									<span><%= f.file_field :image %></span> 
+									<span style="margin-left: -3em"><%= f.submit :Enviar,class: 'btn btn-success' %></span>
+								</div>
+							<% end %>
 						<% end %>
 					</div>
+					<% @procedure.reports.each do |photo| %>
+					<div class="col-lg-3 col-md-3 col-sm-12 photo">
+						<%= link_to (image_tag photo.variant(resize: '250x250!').processed), url_for(photo) %>
+						<% if signed_in? %>
+							<%= link_to purge_image_path(@procedure, 'reports', photo ), method: :delete, data:{confirm: 'Remover esta imagem?'} do %>
+								<i class="fa fa-trash btn-delete"></i>
+							<% end %>
+						<% end %>
+					</div>
+					<% end %>
 				</div>
 			</div>
 		</div>
