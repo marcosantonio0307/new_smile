@@ -173,7 +173,7 @@
 		<h2 align="center"><b>FOTOGRAFÍAS</b></h2>
 		<% @procedure.photos.each do |image| %>
 			<div class="image">
-				<%= wicked_pdf_image_tag image, :width=>'250px', :height=>'300px' %>
+				<%= image_tag image.variant(resize: '250x300!').processed.service_url %>
 			</div>
 		<% end %>
 	</div>

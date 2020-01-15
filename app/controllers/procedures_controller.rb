@@ -47,6 +47,7 @@ class ProceduresController < ApplicationController
 		@procedure = Procedure.find(params[:id])
 		respond_to do |format|
 			format.html
+			format.json
 			format.pdf { render template: 'procedures/print', pdf: 'print'}
 		end
 	end
