@@ -3,10 +3,7 @@
   <head>
   	<title>Imprimir <%= @procedure.id %></title>
   	<meta charset="utf-8">
-  	<script>
-  		//= require activestorage
-  	</script>
-  	<style>
+  	<style type="text/css">
   		.page {
   			float: left;
   			width: 100%;
@@ -53,7 +50,6 @@
 			float: left;
 			margin: 0.5em;
 		}
-
   	</style>
   </head>
   <body>
@@ -176,7 +172,7 @@
 		<h2 align="center"><b>FOTOGRAFÍAS</b></h2>
 		<% @procedure.photos.each do |image| %>
 			<div class="image">
-				<%= image_tag image.variant(resize: '250x300!').processed %>
+				<%= image_tag wicked_image_active_storage_workaround(image), :width=>'250px', :height=>'300px' %>
 			</div>
 		<% end %>
 	</div>
@@ -184,7 +180,7 @@
 		<h2 align="center"><b>RAIO X PANORÂMICO</b></h2>
 		<% @procedure.raysx.each do |image| %>
 			<div class="image">
-				<%= image_tag image.variant(resize: '850x600!').processed %>
+				<%= image_tag wicked_image_active_storage_workaround(image), :width=>'850px', :height=>'600px' %>
 			</div>
 		<% end %>
 	</div>
@@ -192,7 +188,7 @@
 		<h2 align="center"><b>TELE RADIOGRAFIA</b></h2>
 		<% @procedure.teleraysx.each do |image| %>
 			<div class="image">
-				<%= image_tag image.variant(resize: '700x1000!').processed %>
+				<%= image_tag wicked_image_active_storage_workaround(image), :width=>'700px', :height=>'1000px' %>
 			</div>
 		<% end %>
 	</div>
@@ -200,7 +196,7 @@
 		<h2 align="center"><b>TRAÇADO CEFALOMÉTRICO</b></h2>
 		<% @procedure.traceds.each do |image| %>
 			<div class="image">
-				<%= image_tag image.variant(resize: '850x1200!').processed %>
+				<%= image_tag wicked_image_active_storage_workaround(image), :width=>'850px', :height=>'1200px' %>
 			</div>
 		<% end %>
 	</div>
@@ -208,7 +204,7 @@
 		<h2 align="center"><b>FATOR USP</b></h2>
 		<% @procedure.usps.each do |image| %>
 			<div class="image">
-				<%= image_tag image.variant(resize: '850x1200!').processed %>
+				<%= image_tag wicked_image_active_storage_workaround(image), :width=>'850px', :height=>'1200px' %>
 			</div>
 		<% end %>
 	</div>
@@ -216,7 +212,7 @@
 		<h2 align="center"><b>LAUDO RADIOGRÁFICO</b></h2>
 		<% @procedure.reports.each do |image| %>
 			<div class="image">
-				<%= image_tag image.variant(resize: '850x1200!').processed %>
+				<%= image_tag wicked_image_active_storage_workaround(image), :width=>'850px', :height=>'1200px' %>
 			</div>
 		<% end %>
 	</div>
