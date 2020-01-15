@@ -7,7 +7,7 @@
   		.page {
   			float: left;
   			width: 100%;
-  			height: 1300px; 
+  			min-height: 1300px; 
   		}
   		.logo {
   			float: left;
@@ -45,6 +45,10 @@
 		}
 		.table-bordered td {
 			border: solid 1px;
+		}
+		.image {
+			float: left;
+			margin: 0.5em;
 		}
 
   	</style>
@@ -164,6 +168,54 @@
 				</tbody>
 			</table>
 		</div>
+	</div>
+	<div class="page">
+		<h2 align="center"><b>FOTOGRAFÍAS</b></h2>
+		<% @procedure.photos.each do |image| %>
+			<div class="image">
+				<%= image_tag image.variant(resize: '250x300!').processed %>
+			</div>
+		<% end %>
+	</div>
+	<div class="page">
+		<h2 align="center"><b>RAIO X PANORÂMICO</b></h2>
+		<% @procedure.raysx.each do |image| %>
+			<div class="image">
+				<%= image_tag image.variant(resize: '850x600!').processed %>
+			</div>
+		<% end %>
+	</div>
+	<div class="page">
+		<h2 align="center"><b>TELE RADIOGRAFIA</b></h2>
+		<% @procedure.teleraysx.each do |image| %>
+			<div class="image">
+				<%= image_tag image.variant(resize: '700x1000!').processed %>
+			</div>
+		<% end %>
+	</div>
+	<div class="page">
+		<h2 align="center"><b>TRAÇADO CEFALOMÉTRICO</b></h2>
+		<% @procedure.traceds.each do |image| %>
+			<div class="image">
+				<%= image_tag image.variant(resize: '850x1200!').processed %>
+			</div>
+		<% end %>
+	</div>
+	<div class="page">
+		<h2 align="center"><b>FATOR USP</b></h2>
+		<% @procedure.usps.each do |image| %>
+			<div class="image">
+				<%= image_tag image.variant(resize: '850x1200!').processed %>
+			</div>
+		<% end %>
+	</div>
+	<div class="page">
+		<h2 align="center"><b>LAUDO RADIOGRÁFICO</b></h2>
+		<% @procedure.reports.each do |image| %>
+			<div class="image">
+				<%= image_tag image.variant(resize: '850x1200!').processed %>
+			</div>
+		<% end %>
 	</div>
   </body>
 </html>

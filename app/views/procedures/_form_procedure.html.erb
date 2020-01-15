@@ -1,5 +1,5 @@
 <%= form_for @procedure do |f| %>
-	<%= f.hidden_field :status, value: false  %>
+	<%= f.hidden_field :status %>
 	<div class="form-group">
 		<%= f.label :Paciente %>
 		<%= f.text_field :patient, class: 'form-control' %>
