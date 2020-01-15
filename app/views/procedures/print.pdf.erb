@@ -64,7 +64,7 @@
 		<div id="personalInformations-box" class="container-procedure no-active">
 			<div class="avatar">
 				<% if @procedure.avatar.attached? %>
-					<%= image_tag @procedure.avatar.variant(resize: '250x300!').processed %>
+					<%= image_tag wicked_image_active_storage_workaround(@procedure.avatar.attachment), :width=>'250px', :height=>'300px' %>
 				<% else %>
 					<h3>Não há imagem</h3>
 				<% end %>
@@ -209,6 +209,7 @@
 		<% end %>
 	</div>
 	<div class="page">
+		<br><br><br>
 		<h2 align="center"><b>LAUDO RADIOGRÁFICO</b></h2>
 		<% @procedure.reports.each do |image| %>
 			<div class="image">
