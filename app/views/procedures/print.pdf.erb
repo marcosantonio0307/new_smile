@@ -3,6 +3,9 @@
   <head>
   	<title>Imprimir <%= @procedure.id %></title>
   	<meta charset="utf-8">
+  	<script>
+  		//= require activestorage
+  	</script>
   	<style>
   		.page {
   			float: left;
@@ -173,7 +176,7 @@
 		<h2 align="center"><b>FOTOGRAFÍAS</b></h2>
 		<% @procedure.photos.each do |image| %>
 			<div class="image">
-				<%= image_tag image.variant(resize: '250x300!').processed.service_url %>
+				<%= image_tag image.variant(resize: '250x300!').processed %>
 			</div>
 		<% end %>
 	</div>
