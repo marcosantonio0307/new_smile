@@ -144,6 +144,7 @@ body, input, button {
 	width: 270px;
 	height: 250px;
 	padding: 0em 0.1em;
+	margin-bottom: 0.5em;
 	text-align: center;
 }
 

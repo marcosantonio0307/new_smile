@@ -173,7 +173,7 @@
 		<h2 align="center"><b>FOTOGRAFÍAS</b></h2>
 		<% @procedure.photos.each do |image| %>
 			<div class="image">
-				<%= image_tag image.variant(resize: '250x300!').processed %>
+				<%= image_tag image, :width=>'250px', :height=>'300px' %>
 			</div>
 		<% end %>
 	</div>
