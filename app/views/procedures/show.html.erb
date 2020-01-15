@@ -37,12 +37,19 @@
 						<% end %>
 					</div>
 					<h4><b>* INFORMAÇOES DO PACIENTE</b>
-						<span style="margin-left: 1em;"><%= link_to :Editar, edit_procedure_path(@procedure), class: 'btn btn-warning' %></span>
-						<% if signed_in? %>
-							<% if @procedure.status == false %>
-								<span style="margin-left: 0.5em;"><%= link_to 'Finalizar Processo', finish_procedure_path(@procedure), class: 'btn btn-success', data:{confirm: 'Finalizar este procedimento?'} %></span>
+						<span style="margin-left: 1em;" class="options">
+							<%= link_to edit_procedure_path(@procedure) do %>
+								<i class="fa fa-edit"></i>
 							<% end %>
-						<% end %>
+							<% if signed_in? %>
+								<% if @procedure.status == false %>
+									<%= link_to finish_procedure_path(@procedure), data:{confirm: 'Finalizar este procedimento?'} do %>
+										<i class="fa fa-check"></i>
+									<% end %>
+								<% end %>
+							<% end %>
+							</span>
+						
 					</h4><br>
 					<h3><b><%= @procedure.patient %></b></h3>
 					<h3><b>DR. <%= @procedure.doctor %></b></h3>
@@ -112,8 +119,14 @@
 								<td><%= work.description %></td>
 								<td><%= work.next_work %></td>
 								<% if signed_in? %>
-								<td><%= link_to :Editar, edit_procedure_work_path(@procedure, work), class: 'btn btn-warning' %></td>
-								<td><%= link_to :Excluir, procedure_work_path(@procedure, work), method: :delete, class: 'btn btn-danger' %></td>
+								<td class="options">
+									<%= link_to edit_procedure_work_path(@procedure, work) do %>
+										<i class="fa fa-edit"></i>
+									<% end %>
+									<%= link_to procedure_work_path(@procedure, work), method: :delete, data:{confirm: 'Excluir este trabalho?'} do %>
+										<i class="fa fa-trash"></i>
+									<% end %>
+								</td>
 								<% end %>
 							</tr>
 							<% end %>

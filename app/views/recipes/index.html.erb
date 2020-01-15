@@ -1,0 +1,49 @@
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12">
+		<div class="container-big">
+			<h2 align="center"><b>RECEITAS DE CAIXA</b></h2><br>
+			<p style="float: left;"><%= link_to 'Nova Receita', new_recipe_path, class: 'btn btn-success' %></p>
+			<input type="text" id="search" placeholder="Buscar Recita" style="float: right; margin-bottom: 1em;">
+			<table class="table table-bordered">
+				<thead>
+					<th>Data</th>
+					<th>Nome</th>
+					<th>Descrição</th>
+					<th>Valor</th>
+					<th></th>
+				</thead>
+				<tbody id="table">
+					<% @recipes.each do |recipe| %>
+					<tr>
+						<td><%= datebr recipe.date_recipe %></td>
+						<td><%= recipe.name %></td>
+						<td><%= recipe.description %></td>
+						<td><%= moneybr recipe.price %></td>
+						<td class="options">
+							<%= link_to edit_recipe_path(recipe) do %>
+								<i class="fa fa-edit"></i>
+							<% end %>
+							<%= link_to recipe_path(recipe), method: :delete, data:{confirm: 'Excluir essa receita?'} do %>
+								<i class="fa fa-trash"></i>
+							<% end %>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+	    $("#search").keyup(function(){
+	        var texto = $(this).val();
+	        $("#table tr").css("display", "table-row");
+	        $("#table tr").each(function(){
+	            if($(this).text().toUpperCase().indexOf(texto.toUpperCase()) < 0)
+   				   $(this).css("display", "none");
+	        });
+	    });
+	});
+</script>

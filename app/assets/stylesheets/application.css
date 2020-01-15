@@ -148,7 +148,7 @@ body, input, button {
 }
 
 .btn-delete {
-	font-size: 1.7em;
+	font-size: 1.5em;
 	color: #1c1c1c;
 	background: #fff;
 	padding: 0.1em;
@@ -187,4 +187,15 @@ body, input, button {
 .box2 textarea {
 	font-size: 1.3em;
 	height: 300px;
+}
+
+.options {
+	width: 100px;
+}
+
+.options a {
+	font-size: 1.3em;
+	margin: 0 0.2em;
+	color: #8181F7;
+	text-decoration: none;
 }

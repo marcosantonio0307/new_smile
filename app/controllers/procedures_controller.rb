@@ -1,11 +1,14 @@
 class ProceduresController < ApplicationController
 	before_action :authenticate_user!, only:[:index, :create, :reports, :avatar, :image, :purge_image,]
 	def index
+		@title = 'PROCESSOS ABERTOS'
 		@procedures = Procedure.where(status: false)
 	end
 
 	def finished
+		@title = 'PROCESSOS CONCLUÍDOS'
 		@procedures = Procedure.where(status: true)
+		render :index
 	end
 
 	def new
@@ -16,6 +19,7 @@ class ProceduresController < ApplicationController
 		values = params.require(:procedure).permit!
 		@procedure = Procedure.create values
 		if @procedure.save
+			@procedure.update(status: false)
 			redirect_to procedure_path(@procedure), notice: 'Processo Registrado!'
 		else
 			render :new
